@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/register.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/personal_page.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -153,38 +153,38 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 
 /***/ }),
 
-/***/ "./src/css/register.less":
-/*!*******************************!*\
-  !*** ./src/css/register.less ***!
-  \*******************************/
+/***/ "./src/css/personal_page.less":
+/*!************************************!*\
+  !*** ./src/css/personal_page.less ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/css/register.less?");
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/css/personal_page.less?");
 
 /***/ }),
 
-/***/ "./src/js/register.js":
-/*!****************************!*\
-  !*** ./src/js/register.js ***!
-  \****************************/
+/***/ "./src/js/personal_page.js":
+/*!*********************************!*\
+  !*** ./src/js/personal_page.js ***!
+  \*********************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_register_less__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/register.less */ \"./src/css/register.less\");\n/* harmony import */ var _css_register_less__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_register_less__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.js\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ \"./node_modules/vuex/dist/vuex.esm.js\");\n/* harmony import */ var _lib_register_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lib/register_store */ \"./src/lib/register_store.js\");\n\r\n\r\n\r\n\r\n\r\n\r\nvue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\r\nconst myStore = Object(_lib_register_store__WEBPACK_IMPORTED_MODULE_3__[\"default\"])();\r\n\r\n\r\n\r\n\r\nlet Head = {\r\n    template:`\r\n        <div>\r\n            <div class=\"head\">\r\n                <ul>\r\n                    <li>1.填写信息</li>\r\n                    <li>2.激活</li>\r\n                    <li>3.上传头像</li>\r\n                    <li>4.生日、性别</li>\r\n                    <li>5.选择、设置个人偏好</li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    `\r\n};\r\n\r\n\r\n\r\nlet Body_info = {\r\n  template:`\r\n    <div>\r\n        <ul>\r\n            <li>\r\n                <span>用户名</span><input type=\"text\">\r\n            </li>\r\n            <li>\r\n                <span>密码</span><input type=\"password\">\r\n            </li>\r\n            <li>\r\n                <span>确认密码</span><input type=\"password\">\r\n            </li>\r\n            <li>\r\n                <span>邮箱</span><input type=\"text\">\r\n            </li>\r\n        </ul>\r\n    </div>\r\n  `\r\n};\r\n\r\n\r\nlet Body_activation = {\r\n    template:`\r\n        <div>\r\n            <ul>\r\n                <li>\r\n                    验证码图片\r\n                </li>\r\n                <li>\r\n                    <span>请填写验证码：</span>\r\n                    <input type=\"text\">\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    `\r\n};\r\n\r\n\r\nlet Body_photo = {\r\n  template:`\r\n        <div>\r\n            <ul>\r\n                <li>\r\n                    <h4>请上传您的头像</h4>\r\n                    <input type=\"file\">\r\n                </li>\r\n            </ul>\r\n            \r\n        </div>\r\n  `\r\n};\r\n\r\nlet Body_age_gender = {\r\n    template:`\r\n        <div>\r\n            <ul>\r\n                <li>\r\n                    <span>请选择您的性别</span>\r\n                    <input type=\"radio\" name=\"gender\">男\r\n                    <input type=\"radio\" name=\"gender\">女\r\n                    <input type=\"radio\" name=\"gender\">保密\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    `\r\n};\r\n\r\nlet Body_person_hobby = {\r\n    template:`\r\n        <div>\r\n            <ul>\r\n                <li>选择设置个人偏好</li>\r\n            </ul>\r\n        </div>\r\n    `\r\n};\r\n\r\n\r\nlet Body = {\r\n    template:`\r\n        <div class=\"body\">  \r\n            <form action=\"\">\r\n                <body_info></body_info>\r\n                <body_activation></body_activation>\r\n                <body_photo></body_photo>\r\n                <body_age_gender></body_age_gender>\r\n                <body_person_hobby></body_person_hobby>\r\n                <input type=\"button\" value=\"下一步\">\r\n            </form>\r\n        </div>  \r\n    `,\r\n    components:{\r\n        'body_info':Body_info,\r\n        'body_activation':Body_activation,\r\n        'body_photo':Body_photo,\r\n        'body_age_gender':Body_age_gender,\r\n        'body_person_hobby':Body_person_hobby\r\n    }\r\n};\r\n\r\n\r\nlet App = {\r\n    template: `\r\n        <div>\r\n            <h1 class=\"head\">欢迎来到注册页面</h1>\r\n            <div class=\"main\">\r\n                <my-head></my-head>\r\n                <my-body></my-body>\r\n            </div>\r\n        </div>\r\n          `,\r\n    computed: {\r\n    },\r\n    components:{\r\n        \"my-head\":Head,\r\n        \"my-body\":Body\r\n    }\r\n};\r\n\r\nnew vue__WEBPACK_IMPORTED_MODULE_1___default.a({\r\n    el: \"#app\",\r\n    store: myStore,\r\n    template: `<app></app>`,\r\n    components: {\r\n        'app': App,\r\n    },\r\n});\r\n\n\n//# sourceURL=webpack:///./src/js/register.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_personal_page_less__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/personal_page.less */ \"./src/css/personal_page.less\");\n/* harmony import */ var _css_personal_page_less__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_personal_page_less__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.js\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ \"./node_modules/vuex/dist/vuex.esm.js\");\n/* harmony import */ var _lib_personal_page_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lib/personal_page_store */ \"./src/lib/personal_page_store.js\");\n\r\n\r\n\r\n\r\n\r\nvue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\r\n\r\nconst myStore = Object(_lib_personal_page_store__WEBPACK_IMPORTED_MODULE_3__[\"default\"])();\r\n\r\nlet Explain = {\r\n\r\n    template:`\r\n        <div>\r\n            <ul>\r\n                <li>系统消息,通知</li>\r\n                <li>动态信息展示</li>\r\n                <li>景点推荐</li>\r\n                <li>游记推荐</li>\r\n                <li>发布内容和搜索内容快捷入口</li>\r\n                <li>我说</li>\r\n            </ul>\r\n        </div>\r\n    `\r\n\r\n};\r\n\r\n\r\n\r\n\r\n\r\nlet App = {\r\n    template: `\r\n        <div>\r\n            <h1>欢迎来到个人首页</h1>\r\n            <explain></explain>\r\n        </div>\r\n          `,\r\n    computed: {\r\n\r\n    },\r\n    components:{\r\n        'explain':Explain\r\n    }\r\n};\r\n\r\nnew vue__WEBPACK_IMPORTED_MODULE_1___default.a({\r\n    el: \"#app\",\r\n    store: myStore,\r\n    template: `<app></app>`,\r\n    components: {\r\n        'app': App,\r\n    },\r\n});\r\n\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./src/js/personal_page.js?");
 
 /***/ }),
 
-/***/ "./src/lib/register_store.js":
-/*!***********************************!*\
-  !*** ./src/lib/register_store.js ***!
-  \***********************************/
+/***/ "./src/lib/personal_page_store.js":
+/*!****************************************!*\
+  !*** ./src/lib/personal_page_store.js ***!
+  \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ \"./node_modules/vuex/dist/vuex.esm.js\");\n\r\n\r\nfunction createStore() {\r\n    return new vuex__WEBPACK_IMPORTED_MODULE_0__[\"default\"].Store({\r\n    state: {\r\n        name: \"register\",\r\n    },\r\n    mutations: {},\r\n    getters: {},\r\n    actions: {}\r\n    });\r\n}\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (createStore);\n\n//# sourceURL=webpack:///./src/lib/register_store.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ \"./node_modules/vuex/dist/vuex.esm.js\");\n\r\n\r\nfunction createStore() {\r\n    return new vuex__WEBPACK_IMPORTED_MODULE_0__[\"default\"].Store({\r\n    state: {\r\n        name: \"personal_page\",\r\n    },\r\n    mutations: {},\r\n    getters: {},\r\n    actions: {}\r\n    });\r\n}\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (createStore);\n\n//# sourceURL=webpack:///./src/lib/personal_page_store.js?");
 
 /***/ })
 
