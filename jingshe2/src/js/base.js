@@ -5,28 +5,29 @@ import createStore from "../lib/base_store";
 
 
 
-Vue.use(Vuex);
 
-const myStore = createStore();
+// Vue.use(Vuex);
+//
+// const myStore = createStore();
 
 let Base = {
     template: `
         <div>
-            <slot name="body_html"></slot>
+            <div>我是头</div>
+            <slot name="test"></slot>
+            <div>我是尾</div>    
+           
         </div>
           `,
-    computed: {
-
-    }
 };
 
-new Vue({
-    el: "#app",
-    store: myStore,
-    template: `<app></app>`,
-    components: {
-        'app': Base,
-    },
-});
+// new Vue({
+//     el: "#app",
+//     store: myStore,
+//     template: `<app></app>`,
+//     components: {
+//         'app': Base,
+//     },
+// });
 
 export default Base

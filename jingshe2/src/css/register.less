@@ -1,4 +1,138 @@
-body{
-  background-color: aqua;
+
+@body_index_h:159px;
+@body_index_w:249px;
+@main_h:800px;
+@main_w:1000px;
+.mar_pad_zero{
+  margin: 0;
+  padding: 0;
+}
+.mark_border{
+  border: 1px solid black;
+}
+.make_div_center{
+  margin: 0 auto;
+}
+.make_text_center{
+  text-align: center;
+}
+.mark_b(@a){
+  background-color: @a;
 }
 
+
+
+.body_inside_h_w{
+  height: @body_index_h;
+  width: @body_index_w;
+}
+
+
+
+body{
+  background-color: aqua;
+  &:extend(.mar_pad_zero);
+}
+li{
+  list-style-type: none;
+}
+ul{
+  &:extend(.mar_pad_zero);
+}
+
+.my-head{
+  .mark_border;
+  .mark_b(#f4ff87);
+  .head {
+    .make_text_center;
+    ul {
+
+      li {
+        //background-color: darkgoldenrod;
+        display: inline;
+        .mark_b(#83ffe0)
+      }
+    }
+  }
+}
+
+.my-body{
+  .mark_border;
+  .make_text_center;
+  .body_info{
+    .mark_border;
+    &:extend(.body_inside_h_w);
+    .make_div_center;
+    ul {
+      li {
+        margin-top: 10px;
+        span {
+          float: left;
+        }
+        input {
+          float: right;
+
+        }
+      }
+    }
+  }
+  .body_activation{
+    .mark_border;
+    &:extend(.body_inside_h_w);
+    .make_div_center;
+
+    ul{
+
+      line-height: 58px;
+      li{
+
+        input{
+          width:70px;
+        }
+      }
+    }
+  }
+  .body_photo{
+    .mark_border;
+    .make_div_center;
+    &:extend(.body_inside_h_w);
+    input{
+      width: 180px;
+    }
+  }
+  .body_age_gender{
+    .mark_border;
+    .make_div_center;
+    &:extend(.body_inside_h_w);
+    ul{
+      line-height: @body_index_h/2;
+    }
+  }
+  .body_person_hobby{
+    .mark_border;
+    .make_div_center;
+    &:extend(.body_inside_h_w);
+  }
+}
+
+
+.main{
+  height: @main_h;
+  width: @main_w;
+  .make_div_center
+  //background-color: darkolivegreen;
+}
+
+.welcome{
+  .make_text_center
+}
+
+
+.clearfloat:after{
+    display:block;
+    clear:both;
+    content:"";
+    visibility:hidden;height:0}
+.clearfloat{
+    zoom:1
+}

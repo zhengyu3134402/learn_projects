@@ -14,6 +14,7 @@ let Head = {
     template:`
         <div>
             <div class="head">
+                
                 <ul>
                     <li>1.填写信息</li>
                     <li>2.激活</li>
@@ -21,6 +22,7 @@ let Head = {
                     <li>4.生日、性别</li>
                     <li>5.选择、设置个人偏好</li>
                 </ul>
+                
             </div>
         </div>
     `
@@ -32,16 +34,16 @@ let Body_info = {
   template:`
     <div>
         <ul>
-            <li>
+            <li class="clearfloat">
                 <span>用户名</span><input type="text">
             </li>
-            <li>
+            <li class="clearfloat">
                 <span>密码</span><input type="password">
             </li>
-            <li>
+            <li class="clearfloat">
                 <span>确认密码</span><input type="password">
             </li>
-            <li>
+            <li class="clearfloat">
                 <span>邮箱</span><input type="text">
             </li>
         </ul>
@@ -55,7 +57,7 @@ let Body_activation = {
         <div>
             <ul>
                 <li>
-                    验证码图片
+                    <img src="" alt="11">
                 </li>
                 <li>
                     <span>请填写验证码：</span>
@@ -86,7 +88,7 @@ let Body_age_gender = {
         <div>
             <ul>
                 <li>
-                    <span>请选择您的性别</span>
+                    <span>请选择您的性别</span><br>
                     <input type="radio" name="gender">男
                     <input type="radio" name="gender">女
                     <input type="radio" name="gender">保密
@@ -109,13 +111,13 @@ let Body_person_hobby = {
 
 let Body = {
     template:`
-        <div class="body">  
+        <div >  
             <form action="">
-                <body_info></body_info>
-                <body_activation></body_activation>
-                <body_photo></body_photo>
-                <body_age_gender></body_age_gender>
-                <body_person_hobby></body_person_hobby>
+                <body_info class="body_info"></body_info>
+                <body_activation class="body_activation"></body_activation>
+                <body_photo class="body_photo"></body_photo>
+                <body_age_gender class="body_age_gender"></body_age_gender>
+                <body_person_hobby class="body_person_hobby"></body_person_hobby>
                 <input type="button" value="下一步">
             </form>
         </div>  
@@ -133,10 +135,10 @@ let Body = {
 let App = {
     template: `
         <div>
-            <h1 class="head">欢迎来到注册页面</h1>
-            <div class="main">
-                <my-head></my-head>
-                <my-body></my-body>
+            <h1 class="welcome">欢迎来到注册页面</h1>
+            <div class="main ">
+                <my-head class="my-head"></my-head>
+                <my-body class="my-body"></my-body>
             </div>
         </div>
           `,

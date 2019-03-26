@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>a</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .aaaa{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+
+    <script>
+
+
+        let aa = {
+            template:`
+                <div>
+                    <header>
+
+                        <solt name="header" class="aaaa"></solt>
+                    </header>
+                    <main>
+                        <solt></solt>
+                    </main>
+                    <fotter>
+                        <solt name="footer"></solt>
+                    </fotter>
+                </div>
+            `,
+
+        };
+
+        new Vue({
+            el:'#app',
+            template:`
+                <div>
+                   <h1 slot="header">header</h1>
+                    <p>gggg</p>
+                    <p slot="footer">footer</p>
+                </div>
+            `,
+            components:{
+                "aa":aa
+            }
+        })
+
+
+
+    </script>
+</body>
+</html>
+
