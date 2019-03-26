@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>a</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script src="../../node_modules/vuex/dist/vuex.js"></script>
     <style>
-        .aaaa{
-            color: red;
-        }
+
     </style>
 </head>
 <body>
@@ -16,38 +15,49 @@
     </div>
 
     <script>
+       Vue.use(Vuex);
 
+        const myStore = new Vuex.Store({
+            state: {
+                name: "Alex",
+                style:{'backgroundColor':'pink'}
+            },
+            mutations: {
+                change_color:function (state) {
+                    return state.style.backgroundColor = 'green'
+                }
+            },
 
-        let aa = {
-            template:`
+        });
+
+        let App = {
+            template: `
                 <div>
-                    <header>
-
-                        <solt name="header" class="aaaa"></solt>
-                    </header>
-                    <main>
-                        <solt></solt>
-                    </main>
-                    <fotter>
-                        <solt name="footer"></solt>
-                    </fotter>
+                    <div v-bind:style="back">1111</div>
+                    <input type="button" v-on:click="change" value="变色">
                 </div>
-            `,
+                  `,
 
+            computed: {
+                back:function () {
+
+                    return this.$store.state.style
+                }
+            },
+            methods:{
+                change:function () {
+                    return this.$store.commit('change_color')
+                }
+            }
         };
 
         new Vue({
-            el:'#app',
-            template:`
-                <div>
-                   <h1 slot="header">header</h1>
-                    <p>gggg</p>
-                    <p slot="footer">footer</p>
-                </div>
-            `,
-            components:{
-                "aa":aa
-            }
+            el: "#app",
+            store: myStore,
+            template: `<app></app>`,
+            components: {
+                'app': App,
+            },
         })
 
 
