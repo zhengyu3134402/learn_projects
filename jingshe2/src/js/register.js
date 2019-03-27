@@ -55,22 +55,111 @@ let Body_info = {
     <div>
         <ul>
             <li class="clearfloat">
-                <span>用户名</span><input type="text">
+                <span>用户名</span><input type="text" v-model="username" v-on:blur="check_username">
+                <span v-if="error_username">输入用户名小于6位，请重新输入！</span>
             </li>
             <li class="clearfloat">
-                <span>密码</span><input type="password">
+                <span>密码</span><input type="password" v-model="password">
             </li>
             <li class="clearfloat">
-                <span>确认密码</span><input type="password">
+                <span>确认密码</span><input type="password" v-model="re_password" v-on:blur="check_re_password">
+                <span v-if="error_password">密码输入不一致</span>
             </li>
-            <li class="clearfloat">
-                <span>邮箱</span><input type="text">
+            <li class="clearfloat" >
+                <span>邮箱</span><input type="text" v-model="mail" v-on:blur="check_mail">
+                <span v-if="error_mail">输入邮箱格式不正确</span>
             </li>
         </ul>
     </div>
   `,
+    watch:{
+      mail:function () {
+          return this.$store.commit("make_mail_error_false")
+      },
+      username:function () {
+          return this.$store.commit("make_username_error_false")
+      },
+      re_password:function () {
+          return this.$store.commit("make_re_password_error_false")
+      }
+    },
+    methods: {
+        check_re_password: function () {
+            if (this.$store.state.head.password !== this.$store.state.head.re_password) {
+                return this.$store.commit('show_error_password', true)
+            }else{
+                return this.$store.commit('make_sure_re_password')
+            }
+        },
+        check_username: function () {
+            if (this.$store.state.head.username.length < 6) {
+                return this.$store.commit('show_username_error', true)
+            } else {
+                return this.$store.commit('make_sure_username')
+            }
+        },
+        check_mail: function () {
+            let reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            if (reg.test(this.$store.state.head.mail)) {
+                return this.$store.commit("make_sure_mail")
+            } else {
+                return this.$store.commit("show_mail_error")
+            }
+        }
+    },
+        computed: {
+            error_mail:function () {
+                return this.$store.state.head.error_mail
+            },
+            error_password: function () {
+                return this.$store.state.head.error_password
+            },
+            error_username: function () {
+                return this.$store.state.head.error_username
+            },
+            username: {
+                get() {
 
-};
+                    return this.$store.state.head.username
+                },
+                set(value) {
+                    // console.log(value);
+                    this.$store.commit("update_username", value)
+                }
+            },
+            password: {
+                get() {
+
+                    return this.$store.state.head.password
+                },
+                set(value) {
+                    // console.log(value);
+                    this.$store.commit("update_password", value)
+                }
+            },
+            re_password: {
+                get() {
+
+                    return this.$store.state.head.re_password
+                },
+                set(value) {
+                    // console.log(value);
+                    this.$store.commit("update_re_password", value)
+                }
+            },
+            mail: {
+                get() {
+
+                    return this.$store.state.head.mail
+                },
+                set(value) {
+                    // console.log(value);
+                    this.$store.commit("update_mail", value)
+                }
+            }
+        }
+
+    };
 
 
 let Body_activation = {
@@ -139,7 +228,9 @@ let Body = {
                 <body_photo class="body_photo" v-if="show_photo"></body_photo>
                 <body_age_gender class="body_age_gender" v-if="show_age_gender"></body_age_gender>
                 <body_person_hobby class="body_person_hobby" v-if="show_person_hobby"></body_person_hobby>
+                <input type="button" value="上一步" v-on:click="back">
                 <input type="button" value="下一步" v-on:click="next">
+                <input type="submit" v-if="form_submit">
             </form>
         </div>  
     `,
@@ -152,27 +243,47 @@ let Body = {
     },
     methods:{
         next:function () {
-            return this.$store.commit('step_ok', 1)
+            if(this.$store.state.flag_num === 5){
+                return this.$store.commit("make_flag_num_5", 5)
+            }else {
+                if (this.$store.state.head.flag_username && this.$store.state.head.flag_re_password && this.$store.state.head.flag_mail){
+                    return this.$store.commit('step_ok', 1)
+                }
+                else{
+                    return 0
+                }
+            }
+        },
+        back:function () {
+            if(this.$store.state.flag_num < 2){
+                return this.$store.commit("make_flag_num_1", 1)
+            }else {
+                return this.$store.commit("step_ok", -1)
+            }
         }
     },
 
     computed: {
         show_info:function () {
-            return this.$store.state.show_info.show
+            return this.$store.state.head.style_li_1.show
         },
         show_activation:function () {
-            return this.$store.state.show_activation.show
+            return this.$store.state.head.style_li_2.show
         },
         show_photo:function () {
-            return this.$store.state.show_photo.show
+            return this.$store.state.head.style_li_3.show
         },
         show_age_gender:function () {
-            return this.$store.state.show_age_gender.show
+            return this.$store.state.head.style_li_4.show
         },
         show_person_hobby:function () {
 
-            return this.$store.state.show_person_hobby.show
+            return this.$store.state.head.style_li_5.show
         },
+        form_submit:function () {
+
+            return this.$store.state.head.form_submit
+        }
 
 
 
