@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>欢迎来到文章管理页面</h1>
+    {% for article in articles %}
+
+        <p>{{ article.publish_time }}</p>
+        <p>{{ article.content }}</p> <a href="{% url 'app_article:article_edit' id=article.id username=article.user.username %}">编辑文章</a>
+        <hr>
+
+    {% endfor %}
+    {{ p }}
+</body>
+</html>

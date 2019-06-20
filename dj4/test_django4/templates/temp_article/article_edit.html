@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>欢迎来到编辑文章页面</h1>
+    <form action="{% url 'app_article:article_edit1' %}" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="username" value="{{ article.user.username }}" hidden>
+        <input type="text" name="article_id" value="{{ article.id }}" hidden>
+        <textarea name="content" id="" cols="80" rows="20">{{ article.content }}</textarea>
+        <div>
+            <input type="submit" value="提交">
+        </div>
+    </form>
+</body>
+</html>

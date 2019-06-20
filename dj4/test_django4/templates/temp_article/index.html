@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>欢迎来到文章主页</h1>
+    {% if mk_user %}
+        <h1><a href="{% url 'app_article:article_manage' user.username %}">文章管理</a></h1>
+    {% endif %}
+    <form action="{% url 'app_article:index' %}" method="post">
+        {% csrf_token %}
+        <textarea name="content" cols="80" rows="5" placeholder="请输入您想发布的内容..."></textarea>
+        <input type="submit" value="发布">
+    </form>
+
+    {% if not mk_user %}
+        <h1>请先登录账号再发布文章</h1>
+        <h1>
+            <span>----></span> <a href="{% url 'app_auth:login' %}">登录</a>
+        </h1>
+    {% endif %}
+    {% for article in articles %}
+    <div>
+        <span>用户：<a href="{% url 'app_article:user_articles' article.user.username %}">{{ article.user.username}}</a></span>
+        <span>发布时间：{{ article.publish_time }}</span>
+        <p>文章内容: <a href="{% url 'app_article:user_article' article.id %}">{{ article.content|truncatechars:20 }}</a></p>
+        <hr>
+    </div>
+{#    {{ article }}#}
+        <hr>
+    {% endfor %}
+
+
+
+    {{ p }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>欢迎来到用户注册页面</h1>
+    <form action="{% url 'app_auth:register' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <span>用户名：</span><input type="text" name="username">
+        </div>
+        <div>
+            <span>密码：</span><input type="password" name="password">
+        </div>
+        <div>
+            <span>确认密码：</span><input type="password" name="re_password">
+        </div>
+        <div>
+            <span>邮箱：</span><input type="text" name="email">
+        </div>
+        <div>
+            <input type="submit" value="提交">
+        </div>
+    </form>
+
+    <a href="{% url 'app_auth:index' %}">返回主页</a>
+</body>
+</html>

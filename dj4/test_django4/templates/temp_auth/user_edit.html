@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>欢迎来到用户编辑个人信息页面</h1>
+    <form action="{% url 'app_auth:user_edit' %}" method="post">
+        {% csrf_token %}
+        <div>用户名：{{ user_obj.username }}</div>
+        <div>邮箱：{{ user_obj.email }}</div>
+        <div>
+            <span>电话号码：</span>
+            <input type="text" name="phone" value="{{ user_obj.userinfo.phone }}">
+        </div>
+        <div>
+            <span>地址：</span>
+            <input type="text" name="address" value="{{ user_obj.userinfo.address }}">
+        </div>
+        <div>
+            <span>个人简介：</span>
+            <textarea cols=20 rows=5 name="about_me" >{{ user_obj.userinfo.about_me }}</textarea>
+        </div>
+        <div>
+
+            <input type="submit" value="提交">
+        </div>
+    </form>
+</body>
+</html>
