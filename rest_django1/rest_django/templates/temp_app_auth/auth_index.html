@@ -1,0 +1,68 @@
+{% extends 'temp_libs/base.html' %}
+
+{% block header %}
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">用户首页</a></li>
+    <li role="presentation"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">登陆</a></li>
+    <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">注册</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">我是首页</div>
+
+    {#================================================================登录#}
+    <div role="tabpanel" class="tab-pane" id="login">
+        <form>
+          <div class="form-group">
+            <label for="username_login">姓名</label>
+            <input type="text" class="form-control" id="username_login" placeholder="姓名">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword_pwd">密码</label>
+            <input type="password" class="form-control" id="exampleInputPassword_pwd" placeholder="密码">
+          </div>
+
+
+          <button type="submit" class="btn btn-default">登陆</button>
+        </form>
+
+
+    </div>
+    {#================================================================登录#}
+
+    {#================================================================注册#}
+    <div role="tabpanel" class="tab-pane" id="register">
+        <form action="" method="post">
+          <div class="form-group">
+            <label for="username1">姓名</label>
+            <input type="text" class="form-control" id="username1" placeholder="姓名">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">密码</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword2">确认密码</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="确认密码">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">邮箱</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="邮箱">
+          </div>
+
+          <button type="submit" class="btn btn-default">提交</button>
+        </form>
+    </div>
+    {#================================================================ 注册#}
+    <div role="tabpanel" class="tab-pane" id="settings">4</div>
+  </div>
+
+</div>
+
+{% endblock %}

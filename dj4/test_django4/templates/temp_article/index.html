@@ -5,9 +5,11 @@
     <title>Title</title>
 </head>
 <body>
+    <a href="{% url 'app_auth:login' %}">返回登陆页</a>
     <h1>欢迎来到文章主页</h1>
     {% if mk_user %}
-        <h1><a href="{% url 'app_article:article_manage' user.username %}">文章管理</a></h1>
+        <h1><a href="{% url 'app_article:article_manage' %}">文章管理</a></h1>
+        <h2><a href="{% url 'app_article:followed_user_article_list' %}">您关注的用户的文章列表</a></h2>
     {% endif %}
     <form action="{% url 'app_article:index' %}" method="post">
         {% csrf_token %}
@@ -25,10 +27,11 @@
     <div>
         <span>用户：<a href="{% url 'app_article:user_articles' article.user.username %}">{{ article.user.username}}</a></span>
         <span>发布时间：{{ article.publish_time }}</span>
+
         <p>文章内容: <a href="{% url 'app_article:user_article' article.id %}">{{ article.content|truncatechars:20 }}</a></p>
+        <span><a href="{% url 'app_article:user_article' article.id %}">评论</a></span>
         <hr>
     </div>
-{#    {{ article }}#}
         <hr>
     {% endfor %}
 

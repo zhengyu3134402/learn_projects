@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^article_manage/$', views.ArticleManage.as_view(), name="article_manage"),
     url(r'^article_edit/(?P<id>\d+)&(?P<username>.*)$', views.ArticleEdit.as_view(), name="article_edit"),
     url(r'^article_edit1/$', views.ArticleEdit.as_view(), name="article_edit1"),
-
+    url(r'^followed_user_article_list/$', views.FollowedUserArticleList.as_view(), name="followed_user_article_list"),
+    url(r'^article_comment/$', views.ArticleComment.as_view(), name="article_comment"),
 
 ]

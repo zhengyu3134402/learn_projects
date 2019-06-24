@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>您关注用户的文字列表</h1>
+
+    {% for user in users_list %}
+
+    <div>
+        {% for article in user.article.all %}
+            <span>用户：<a href="{% url 'app_article:user_articles' user.username %}">{{ user.username}}</a></span>
+            <span>发布时间：{{article.publish_time }}</span>
+            <p>文章内容: <a href="{% url 'app_article:user_article' article.id %}">{{ article.content|truncatechars:20 }}</a></p>
+            <hr>
+        {% endfor %}
+    </div>
+
+    {% endfor %}
+</body>
+</html>

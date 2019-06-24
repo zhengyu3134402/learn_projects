@@ -6,9 +6,10 @@ from .libs import check_actice_code
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
-
+from .models import Follower
 
 from django.contrib.auth import login, logout
+from django.db.utils import IntegrityError
 
 
 class Index(View):
@@ -160,6 +161,47 @@ class UserEdit(View):
             request.user.save()
             return HttpResponse('添加内容完毕')
         return HttpResponse('输入信息有误，验证不正确')
+
+
+class UserFollowed(View):
+    """用户关注"""
+    @method_decorator(login_required)
+    def get(self, request, username):
+
+
+        be_followed = User.objects.filter(username=username).first()
+        followed = User.objects.filter(username=request.user.username).first()
+
+        try:
+            Follower.objects.create(followed=followed, be_followed=be_followed)
+        except IntegrityError:
+            return HttpResponse('您已经关注过他了')
+        # print(followed)
+        # print(be_followed)
+
+
+
+        return HttpResponse('关注完毕')
+
+
+class FollowerList(View):
+    """用户关注和被关注用户列表"""
+    def get(self, request, username, follow):
+        print(follow)
+        print(type(follow))
+        user = User.objects.filter(username=username).first()
+        if follow == "1":
+            follow_list = Follower.objects.filter(followed=user).values_list("be_followed__username")
+            return render(request, 'temp_auth/follower_list.html', {"follow_list": follow_list})
+        elif follow == "0":
+            be_follow_list = Follower.objects.filter(be_followed=user).values_list("followed__username")
+            return render(request, 'temp_auth/follower_list.html', {"be_follow_list": be_follow_list})
+        else:
+            return HttpResponse('查无此人')
+
+
+
+
 
 
 

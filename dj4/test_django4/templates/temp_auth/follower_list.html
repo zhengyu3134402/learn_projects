@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for follow in follow_list %}
+
+        <li>{{ follow.0 }}</li>
+
+    {% endfor %}
+    <hr>
+    {% for be_follow in be_follow_list %}
+            <li>{{ be_follow.0 }}</li>
+    {% endfor %}
+
+
+</body>
+</html>

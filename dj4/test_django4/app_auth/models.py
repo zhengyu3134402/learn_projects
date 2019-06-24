@@ -34,7 +34,11 @@ def save_user_profile(sender, instance, **kwargs):
     instance.userinfo.save()
 
 
+class Follower(models.Model):
+    """关注者"""
+    followed = models.ForeignKey(User, related_name="followed", null=True)
+    be_followed = models.ForeignKey(User, related_name="be_followed", null=True)
 
-
-
-
+    class Meta:
+        db_table = "follower"
+        unique_together = (("followed", "be_followed"), )

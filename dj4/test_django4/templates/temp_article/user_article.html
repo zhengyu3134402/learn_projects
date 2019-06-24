@@ -7,5 +7,27 @@
 <body>
     <h1>欢迎来到单个文章页面</h1>
     <p>{{ article.content }}</p>
+
+
+    <form action="{% url 'app_article:article_comment' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="id" value="{{ article.id }}" readonly hidden>
+        <textarea name="comment" id="" cols="80" rows="10"></textarea>
+        <input type="submit" value="提交评论">
+    </form>
+
+    <h2>显示评论</h2>
+    {% for comment in comment_list %}
+
+         <div>{{ comment.comment_content }}</div>
+         <div>
+             评论人: <a href="{% url 'app_article:user_articles' comment.comment_user.username%}">{{ comment.comment_user.username }}</a>
+         </div>
+        <hr>
+
+    {% endfor %}
+
+
+
 </body>
 </html>

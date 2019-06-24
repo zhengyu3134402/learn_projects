@@ -14,7 +14,8 @@ urlpatterns = [
     url(r'^reset_password_r/$', views.ResetPasswordR.as_view(), name="reset_password_r"),
     url(r'^change_email/$', views.ChangeEmail.as_view(), name="change_email"),
     url(r'^user_edit/$', views.UserEdit.as_view(), name="user_edit"),
-
+    url(r'^user_followed/(?P<username>.*)$', views.UserFollowed.as_view(), name="user_followed"),
+    url(r'^follower_list/(?P<username>.*)&(?P<follow>.*)$', views.FollowerList.as_view(), name="follower_list"),
 
 
 

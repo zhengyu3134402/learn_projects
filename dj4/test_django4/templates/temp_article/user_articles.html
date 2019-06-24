@@ -5,13 +5,30 @@
     <title>Title</title>
 </head>
 <body>
-<h1>欢迎来到{{ username }}文章列表页面</h1>
+<h1>欢迎来到{{ user_obj.username }}文章列表页面</h1>
 <br>
+
+<div>用户名：{{ user_obj.username }}</div>
+<div>邮箱：{{ user_obj.email }}</div>
+<span><a href="{% url 'app_auth:follower_list' username=user_obj.username follow=1 %}">关注了:{{ user_obj.followed.count }}人</a></span>
+<span><a href="{% url 'app_auth:follower_list' username=user_obj.username follow=0 %}">被关注了：{{ user_obj.be_followed.count }}人</a></span>
+{% if user == user_obj %}
+    <span><a href="#" hidden>关注你</a></span>
+    {% else %}
+        <span><a href="{% url 'app_auth:user_followed' username=user_obj.username %}">关注你</a></span>
+    {% if user.is_authenticated %}
+
+        {% else %}
+            <span><a href="{% url 'app_auth:login' %}">登录</a></span>
+    {% endif %}
+{% endif %}
+<hr>
 {% for article in articles %}
     <div>
         <span>用户：<a href="{% url 'app_article:user_articles' article.user.username %}">{{ article.user.username}}</a></span>
         <span>发布时间：{{ article.publish_time }}</span>
         <p>文章内容: <a href="{% url 'app_article:user_article' article.id %}">{{ article.content|truncatechars:20 }}</a></p>
+
         <hr>
     </div>
 {% endfor %}

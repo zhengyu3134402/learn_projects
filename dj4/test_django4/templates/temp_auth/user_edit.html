@@ -8,8 +8,8 @@
     <h1>欢迎来到用户编辑个人信息页面</h1>
     <form action="{% url 'app_auth:user_edit' %}" method="post">
         {% csrf_token %}
-        <div>用户名：{{ user_obj.username }}</div>
-        <div>邮箱：{{ user_obj.email }}</div>
+
+
         <div>
             <span>电话号码：</span>
             <input type="text" name="phone" value="{{ user_obj.userinfo.phone }}">

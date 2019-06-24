@@ -22,15 +22,15 @@
     </form>
     <a href="{% url 'app_auth:index' %}">返回主页</a>
 
+
     {% if  user.is_authenticated %}
         <a href="{% url 'app_auth:logout' %}">退出登录</a>
         <a href="{% url 'app_auth:change_password' %}">修改密码</a>
         <a href="{% url 'app_auth:change_email' %}">修改邮箱</a>
         <a href="{% url 'app_auth:user_edit' %}">个人资料</a>
-        <a href="{% url 'app_article:index' %}">文章首页</a>
         {% else %}
             <a href="{% url 'app_auth:reset_password' %}">忘记密码</a>
     {% endif %}
-
+    <a href="{% url 'app_article:index' %}">文章首页</a>
 </body>
 </html>

@@ -5,10 +5,11 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from .models import Article
-from .auticle_form import ArticleContentForm
+from .auticle_form import ArticleContentForm, ArticleCommentForm
 from django.contrib.auth.models import User
 from libs.pagination import Pagination
 from django.utils.safestring import mark_safe
+from app_auth.models import Follower
 
 class Index(View):
     """文章主页"""
@@ -42,7 +43,7 @@ class UserArticles(View):
     def get(self, request, username):
         user = User.objects.filter(username=username).first()
         articles = Article.objects.filter(user=user).order_by("-publish_time")
-        return render(request, 'temp_article/user_articles.html', {"articles":articles, "username":user.username})
+        return render(request, 'temp_article/user_articles.html', {"articles":articles, "user_obj":user})
 
     def post(self, request):
         pass
@@ -55,7 +56,10 @@ class UserArticle(View):
 
         article = Article.objects.filter(id=article_id).first()
 
-        return render(request, 'temp_article/user_article.html', {"article":article})
+        comment_list = article.comment_article.all()
+
+        return render(request, 'temp_article/user_article.html', {"article":article,
+                                                                  "comment_list": comment_list})
 
 
 class ArticleManage(View):
@@ -64,6 +68,7 @@ class ArticleManage(View):
     @method_decorator(login_required)
     def get(self, request):
         user = User.objects.filter(username=request.user.username).first()
+        print(user)
         if request.user == user:
             articles = user.article.all().order_by("-publish_time")
             current_page = request.GET.get("current_page")
@@ -99,10 +104,36 @@ class ArticleEdit(View):
         return HttpResponse("认证不成功")
 
 
+class FollowedUserArticleList(View):
+    """用户关注用户的文章列表"""
+    @method_decorator(login_required)
+    def get(self, request):
+        user = request.user
+
+        followed_user_list = Follower.objects.filter(be_followed=user).values_list("followed__username")
+        # print(followed_user_list)
+
+        users_list = []
+        for username in followed_user_list:
+            user_obj = User.objects.filter(username=username[0]).first()
+            users_list.append(user_obj)
+
+        return render(request, 'temp_article/followed_user_article_list.html', {"users_list":users_list})
 
 
-@@@@@@@@@@@@书 p151
+class ArticleComment(View):
+    """文章评论"""
 
+    @method_decorator(login_required)
+    def post(self, request):
+        article_id = request.POST.get("id")
 
+        article_comment = request.POST.get("comment")
 
+        article = Article.objects.filter(id=int(article_id)).first()
 
+        a = ArticleCommentForm(request.POST)
+        if a.is_valid() and article:
+            a.save_comment(article, request.user, article_comment)
+            return HttpResponse('评论完毕')
+        return HttpResponse('评论验证不成功')

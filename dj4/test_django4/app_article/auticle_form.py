@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Article
+from .models import Article, Comment
 
 class ArticleContentForm(forms.Form):
 
@@ -17,5 +17,16 @@ class ArticleContentForm(forms.Form):
         a = Article.objects.filter(publish_time=article_obj.publish_time)
         a.update(content=self.cleaned_data["content"])
 
+
+
+class ArticleCommentForm(forms.Form):
+
+    comment = forms.CharField(max_length=200)
+
+    def save_comment(self, article, comment_user, comment_content):
+
+
+        Comment.objects.create(comment_article=article, comment_user=comment_user,
+                               comment_content=comment_content)
 
 
